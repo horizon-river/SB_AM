@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kpk.exam.demo.vo.Article;
 
 @Controller
-public class UsrArticleController {	
+public class UsrArticleController {
+	// 인스턴스 변수
 	private List<Article> articles;
 	private int lastArticleId;
 	
+	// 생성자
 	public UsrArticleController() {
 		this.articles = new ArrayList<>();
 		this.lastArticleId = 0;
@@ -21,6 +23,7 @@ public class UsrArticleController {
 		makeTestData();
 	}
 	
+	// 서비스메서드
 	private void makeTestData() {
 		for (int i = 1; i <= 10; i++) {
 			String title = "제목" + i;
@@ -28,6 +31,21 @@ public class UsrArticleController {
 			
 			writeArticle(title, body);
 		}
+	}
+	
+	private Article getArticle(int id) {
+		for (Article article : articles) {
+			if(article.getId() == id) {
+				return article;
+			}
+		}
+		return null;
+	}
+	
+	private void deleteArticle(int id) {
+		Article article = getArticle(id);
+		
+		articles.remove(article);
 	}
 	
 	private Article writeArticle(String title, String body) {
@@ -40,6 +58,7 @@ public class UsrArticleController {
 		return article;
 	}
 
+	// 액션 메서드
 	@RequestMapping("usr/article/doAdd")
 	@ResponseBody
 	public Article doAdd(String title, String body) {
@@ -52,5 +71,18 @@ public class UsrArticleController {
 	@ResponseBody
 	public List<Article> getArticles() {
 		return articles;
+	}
+	
+	@RequestMapping("usr/article/doDelete")
+	@ResponseBody
+	public String doDelete(int id) {
+		Article article = getArticle(id);
+		if (article == null) {
+			return id + "번 글은 존재하지 않습니다.";
+		}
+		
+		deleteArticle(id);
+		
+		return id + "번 글이 삭제되었습니다.";
 	}
 }
