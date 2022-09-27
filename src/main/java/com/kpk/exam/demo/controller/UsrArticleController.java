@@ -52,7 +52,7 @@ public class UsrArticleController {
 			return id + "번 게시물은 존재하지 않습니다.";
 		}
 		
-		article = articleService.modifyArticle(id, title, body);
+		articleService.modifyArticle(id, title, body);
 		
 		return article;
 	}
