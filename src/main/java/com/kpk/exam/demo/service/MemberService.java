@@ -13,8 +13,14 @@ public class MemberService {
 	private MemberRepository memberRepository;
 
 	public int join(String loginId, String loginPw, String name, String nickname, String cellphoneNum, String email) {
-		 memberRepository.join(loginId, loginPw, name, nickname, cellphoneNum, email);
-		 return memberRepository.getLastInsertId();
+		Member existsMember = memberRepository.getMemberByLoginId(loginId);
+		
+		if (existsMember != null) {
+			return -1;
+		}
+		
+		memberRepository.join(loginId, loginPw, name, nickname, cellphoneNum, email);
+		return memberRepository.getLastInsertId();
 	}
 
 	public Member getMemberById(int id) {
