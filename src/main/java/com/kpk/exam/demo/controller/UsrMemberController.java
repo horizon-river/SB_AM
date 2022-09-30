@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kpk.exam.demo.service.MemberService;
 import com.kpk.exam.demo.util.Ut;
 import com.kpk.exam.demo.vo.Member;
+import com.kpk.exam.demo.vo.ResultData;
 
 @Controller
 public class UsrMemberController {
