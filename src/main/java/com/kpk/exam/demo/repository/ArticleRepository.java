@@ -17,7 +17,7 @@ public interface ArticleRepository {
 	
 	public void deleteArticle(int id);
 
-	public Article modifyArticle(int id, String title, String body);
+	public void modifyArticle(int id, String title, String body);
 
 	public int getLastInsertId();
 	
