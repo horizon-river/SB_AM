@@ -68,7 +68,7 @@ loginPw = 'test1',
 `authLevel` = 3,
 `name` = '사용자1',
 nickname = '사용자1',
-cellphoneNum = '01098765432',
+cellphoneNum = '01012345679',
 email = 'kimpk0416@gmail.com';
 
 # 회원 테스트 데이터 생성 (일반)
@@ -86,5 +86,10 @@ email = 'kimpk0416@gmail.com';
 SELECT * FROM article;
 
 SELECT * FROM `member`;
+
+#게시물 테이블에 회원번호 칼럼 추가
+ALTER TABLE article ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER `updateDate`;
+
+UPDATE article SET memberId = 2 WHERE memberId = 0;
 
 SELECT LAST_INSERT_ID();
