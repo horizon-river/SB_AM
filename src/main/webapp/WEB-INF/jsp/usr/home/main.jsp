@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>메인 페이지</div>
+	<h1>메인 페이지</h1>
+	<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt temporibus minima sunt esse vero odio omnis beatae ab deleniti ullam nostrum cum. Corporis earum omnis provident voluptates molestias numquam dignissimos.</div>
 </body>
 </html>
