@@ -13,7 +13,7 @@ spring:
     username: root
     password: 
 mybatis:
-  type-aliases-package: com.cwy.exam.demo.vo
+  type-aliases-package: com.kpk.exam.demo.vo
 custom:
   logging:
     dir: log

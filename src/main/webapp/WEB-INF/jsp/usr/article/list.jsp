@@ -7,7 +7,7 @@
 <title>LIST</title>
 </head>
 <body>
-	<div>list</div>
+	<h1>LIST</h1>
 	<hr />
 	<table border="1">
 		<thead>

@@ -7,7 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>메인 페이지</h1>
-	<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt temporibus minima sunt esse vero odio omnis beatae ab deleniti ullam nostrum cum. Corporis earum omnis provident voluptates molestias numquam dignissimos.</div>
+	<h1>Main</h1>
+	
+	<header>
+		<a href="#">로고</a>
+		
+		<ul>
+			<li><a href="/"></a>HOME</li>
+			<li><a href="/usr/article/list"></a>LIST</li>
+		</ul>
+	</header>
+	
 </body>
 </html>
