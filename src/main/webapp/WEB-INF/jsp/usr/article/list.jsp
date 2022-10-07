@@ -21,8 +21,6 @@
 							<th>날짜</th>
 							<th>제목</th>
 							<th>작성자</th>
-							<th>수정</th>
-							<th>삭제</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -32,8 +30,6 @@
 								<td>${article.regDate.substring(2,16) }</td>
 								<td><a class="hover:underline" href="../article/detail?id=${article.id }">${article.title }</a></td>
 								<td>${article.writer }</td>
-								<td><a href="../article/modify?id=${article.id }">수정</a></td>
-								<td><a href="../article/delete?id=${article.id }">삭제</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

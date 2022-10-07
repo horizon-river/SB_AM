@@ -21,6 +21,11 @@ html>body {
 	text-align: center;
 }
 
-.btns {
-	text-align:right;
+.btn-text-link {
+	color: grey;
 }
+
+.btn-text-link:hover {
+	color: blue;
+	text-decoration: underline;
+} 
