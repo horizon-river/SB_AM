@@ -12,8 +12,6 @@
 					<col width="140"/>
 					<col />
 					<col width="140"/>
-					<col width="70"/>
-					<col width="70"/>
 					</colgroup>
 					<thead>
 						<tr>
