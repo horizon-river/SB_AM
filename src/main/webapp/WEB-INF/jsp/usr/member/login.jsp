@@ -18,7 +18,7 @@
 						</tr>
 						<tr>
 							<th></th>
-							<td><input type="submit" value="로그인"/></td>
+							<td><button type="submit">로그인</button></td>
 						</tr>
 					</tbody>
 				</table>
