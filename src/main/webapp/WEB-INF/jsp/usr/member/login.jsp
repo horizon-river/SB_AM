@@ -10,23 +10,23 @@
 					<tbody>
 						<tr>
 							<th>아이디</th>
-							<td><input class="w-96" name="loginId" type="text" placeholder="아이디를 입력해주세요."/></td>
+							<td><input class="input input-bordered w-full" name="loginId" type="text" placeholder="아이디를 입력해주세요."/></td>
 						</tr>
 						<tr>
 							<th>비밀번호</th>
-							<td><input class="w-96" name="loginPw" type="text" placeholder="비밀번호를 입력해주세요."/></td>
+							<td><input class="input input-bordered w-full" name="loginPw" type="text" placeholder="비밀번호를 입력해주세요."/></td>
 						</tr>
 						<tr>
 							<th></th>
-							<td><button type="submit">로그인</button></td>
+							<td><button class="btn btn-accent" type="submit">로그인</button></td>
 						</tr>
 					</tbody>
 				</table>
 				
 			</form>
 			
-			<div class="btns">
-				<button class="btn-text-link" type="button" onclick="history.back();">뒤로가기</button>
+			<div class="btns mt-3">
+				<button class="btn btn-warning" type="button" onclick="history.back();">뒤로가기</button>
 			</div>
 		</div>
 	</section>

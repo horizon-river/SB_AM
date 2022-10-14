@@ -6,11 +6,11 @@
 	<section class="mt-8">
 		<div class="container mx-auto px-3 text-xl">
 			<div class="table-box-type-1">
-				<table>
+				<table class="table table-zebra w-full">
 					<tbody>
 						<tr>
 							<th>번호</th>
-							<td>${article.id }</td>
+							<td><div class="badge badge-lg">${article.id }</div></td>
 						</tr>
 						<tr>
 							<th>작성날짜</th>
@@ -36,11 +36,13 @@
 				</table>
 			</div>
 			
-			<div class="btns">
-				<button class="btn-text-link" type="button" onclick="history.back();">뒤로가기</button>
-				<a class="btn-text-link" href="../article/modify?id=${article.id }">수정</a>
+			<div class="btns mt-3">
+				<button class="btn btn-warning" type="button" onclick="history.back();">뒤로가기</button>
+				<c:if test="${article.extra__actorCanModify }">
+					<a class="btn btn-accent"  href="../article/modify?id=${article.id }">수정</a>
+				</c:if>
 				<c:if test="${article.extra__actorCanDelete }">
-					<a class="btn-text-link" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="../article/doDelete?id=${article.id }">삭제</a>
+					<a class="btn btn-error" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="../article/doDelete?id=${article.id }">삭제</a>
 				</c:if>
 			</div>
 			
