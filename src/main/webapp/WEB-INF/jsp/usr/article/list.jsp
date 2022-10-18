@@ -5,6 +5,7 @@
 
 	<section class="mt-8">
 		<div class="container mx-auto px-3 text-xl">
+			<div>${articlesCount } 개</div>
 			<div class="table-box-type-1 overflow-x-auto">
 				<table class="table">
 					<colgroup>
