@@ -13,13 +13,23 @@
 							<td>${rq.loginedMember.nickname }</td>
 						</tr>
 						<tr>
+							<th>게시판</th>
+							<td>
+								<select class="w-full select select-bordered" name="boardId">
+									<option disabled>게시판을 선택해주세요.</option>
+									<option value="1">공지사항</option>
+									<option value="2">자유게시판</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
 							<th>제목</th>
-							<td><input class="input input-bordered w-full" name="title" type="text" placeholder="제목을 입력해주세요."/></td>
+							<td><input required="required" type="text" class="input input-ghost w-full" name="title" placeholder="제목을 입력해주세요."/></td>
 						</tr>
 						<tr>
 							<th>내용</th>
 							<td>
-								<textarea class="w-full textarea textarea-bordered" name="body" placeholder="내용을 입력해주세요."></textarea>
+								<textarea required="required" class="w-full textarea textarea-bordered" name="body" placeholder="내용을 입력해주세요."></textarea>
 							</td>
 						</tr>
 						<tr>
