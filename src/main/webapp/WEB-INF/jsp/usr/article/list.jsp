@@ -56,6 +56,12 @@
 					</c:if>
 				</div>
 			</div>
+			<div class="search flex justify-center mt-3">
+				<form action="" method="get" class="flex justify-item-stretch">
+					<input name="searchKeyword" type="text" placeholder="검색어를 입력해주세요." class="input w-full max-w-xs" />
+					<button class="btn" type="submit">검색</button>
+				</form>
+			</div>
 		</div>
 	</section>
 	
