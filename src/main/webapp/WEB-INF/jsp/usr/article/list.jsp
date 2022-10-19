@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="${board.name} 게시판"/>
+<c:set var="totalPage" value="${totalPage }" />
 <%@ include file="../common/head.jspf" %>
 
 	<section class="mt-8">
@@ -33,6 +34,13 @@
 						</c:forEach>
 					</tbody>
 				</table>
+			</div>
+			<div class="page-menu flex justify-center mt-3">
+				<div class="btn-group">
+					<c:forEach begin="1" end="10" var="i">
+						<a class="btn btn-sm ${param.page == i ? 'btn-active' : '' }" href="?page=${i }">${i }</a>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
 	</section>
