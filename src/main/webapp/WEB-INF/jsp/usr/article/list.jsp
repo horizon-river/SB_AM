@@ -39,25 +39,32 @@
 					<c:set var="pageMenuLen" value="6" />
 					<c:set var="startPage" value="${page - pageMenuLen >= 1 ? page - pageMenuLen : 1 }" />
 					<c:set var="endPage" value="${page + pageMenuLen <= pagesCount ? page + pageMenuLen : pagesCount }" />
+					<c:set var="pageBaseUri" value="?boardId=${boardId }" />
+					<c:set var="pageBaseUri" value="${pageBaseUri }&searchKeywordTypeCode=${param.searchKeywordTypeCode}" />
+					<c:set var="pageBaseUri" value="${pageBaseUri }&searchKeyword=${param.searchKeyword}" />
 					<c:if test="${startPage > 1 }">
-						<a class="btn btn-sm" href="?boardId=${boardId }&page=1">1</a>
+						<a class="btn btn-sm" href="${pageBaseUri }&page=1">1</a>
 						<c:if test="${startPage > 2 }">
 							<a class="btn btn-sm btn-disabled">...</a>
 						</c:if>
 					</c:if>
 					<c:forEach begin="${startPage }" end="${endPage }" var="i">
-						<a class="btn btn-sm ${page == i ? 'btn-active' : '' }" href="?boardId=${boardId }&page=${i }">${i }</a>
+						<a class="btn btn-sm ${page == i ? 'btn-active' : '' }" href="${pageBaseUri }&page=${i }">${i }</a>
 					</c:forEach>
 					<c:if test="${endPage < pagesCount}">
 						<c:if test="${endPage < pagesCount - 1 }">
 							<a class="btn btn-sm btn-disabled">...</a>
 						</c:if>
-						<a class="btn btn-sm" href="?boardId=${boardId }&page=${pagesCount }">${pagesCount }</a>
+						<a class="btn btn-sm" href="${pageBaseUri }&page=${pagesCount }">${pagesCount }</a>
 					</c:if>
 				</div>
 			</div>
 			<div class="search flex justify-center mt-3">
-				<form action="" method="get" class="flex justify-item-stretch">
+				<form action="?list" method="get" class="flex justify-item-stretch">
+					<select name="searchKeywordTypeCode">
+						<option value="title">제목</option>
+						<option value="body">내용</option>
+					</select>
 					<input name="searchKeyword" type="text" placeholder="검색어를 입력해주세요." class="input w-full max-w-xs" />
 					<button class="btn" type="submit">검색</button>
 				</form>
