@@ -5,8 +5,23 @@
 
 	<section class="mt-8">
 		<div class="container mx-auto px-3 text-xl">
-			<div>${articlesCount } 개</div>
-			<div class="table-box-type-1 overflow-x-auto">
+			<div class="flex">
+				<div>게시물 갯수 : <span class="badge">${articlesCount } 개</span></div>
+				<div class="flex-grow"></div>
+				<form class="flex" action="?list" method="get">
+					<input type="hidden" name="boardId" value="${boardId }"/>
+					
+					<select data-value="${param.searchKeywordTypeCode }" class="select select-bordered" name="searchKeywordTypeCode">
+						<option disabled>검색</option>
+						<option value="title">제목</option>
+						<option value="body">내용</option>
+						<option value="title, body">제목 + 내용</option>
+					</select>
+					<input value="${param.searchKeyword }" name="searchKeyword" type="text" placeholder="검색어를 입력해주세요." class="input input-bordered" maxlength="20" />
+					<button class="btn" type="submit">검색</button>
+				</form>
+			</div>
+			<div class="table-box-type-1 overflow-x-auto mt-3">
 				<table class="table">
 					<colgroup>
 					<col width="80"/>
@@ -58,16 +73,6 @@
 						<a class="btn btn-sm" href="${pageBaseUri }&page=${pagesCount }">${pagesCount }</a>
 					</c:if>
 				</div>
-			</div>
-			<div class="search flex justify-center mt-3">
-				<form action="?list" method="get" class="flex justify-item-stretch">
-					<select name="searchKeywordTypeCode">
-						<option value="title">제목</option>
-						<option value="body">내용</option>
-					</select>
-					<input name="searchKeyword" type="text" placeholder="검색어를 입력해주세요." class="input w-full max-w-xs" />
-					<button class="btn" type="submit">검색</button>
-				</form>
 			</div>
 		</div>
 	</section>
