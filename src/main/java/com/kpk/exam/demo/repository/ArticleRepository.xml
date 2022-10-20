@@ -103,4 +103,10 @@
 		WHERE id = #{id}
 	</update>
 	
+	<select id="getArticleHitCount" resultType="Int">
+		SELECT hitCount
+		FROM article
+		WHERE id=#{id}
+	</select>
+	
 </mapper>
