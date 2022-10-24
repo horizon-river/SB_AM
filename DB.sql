@@ -197,10 +197,30 @@ SELECT * FROM board;
 
 SELECT LAST_INSERT_ID();
 
+/*
 # 게시물 늘리기
-INSERT INTO article
+insert into article
 (
     regDate, updateDate, memberId, boardId, title, `body`
 )
-SELECT NOW(), NOW(), FLOOR(RAND() * 2) + 1, FLOOR(RAND() * 2) + 1, CONCAT('제목_',RAND()), CONCAT('내용_',RAND())
-FROM article;
+Select now(), Now(), FLOOR(RAND() * 2) + 1, FLOOR(RAND() * 2) + 1, concat('제목_',rand()), CONCAT('내용_',RAND())
+from article;
+*/
+
+/*
+select A.* ,
+IFNULL(SUM(RP.point),0) AS extra__sumReactionPoint,
+IFNULL(SUM(if(RP.point > 0, RP.point, 0)),0) AS extra__goodReactionPoint,
+IFNULL(SUM(IF(RP.point < 0, RP.point, 0)),0) AS extra__badReactionPoint
+from (
+    SELECT A.*, M.nickname AS writer
+    FROM article AS A
+    LEFT JOIN `member` AS M
+    ON A.memberId = M.id
+) as A
+LEFT join reactionPoint AS RP
+ON RP.relTypeCode = 'article'
+and A.id = RP.relId
+Group by A.id;
+*/
+		

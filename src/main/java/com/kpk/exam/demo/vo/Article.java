@@ -16,8 +16,16 @@ public class Article {
 	private String body;
 	private int hitCount;
 	
+	private int extra__sumReactionPoint;
+	private int extra__goodReactionPoint;
+	private int extra__badReactionPoint;
+	
 	private String writer;
 	
 	private boolean extra__actorCanDelete;
 	private boolean extra__actorCanModify;
+	
+	public String getForPrintType1RegDate() {
+		return regDate.substring(2,16).replace(" ", "<br />");
+	}
 }
