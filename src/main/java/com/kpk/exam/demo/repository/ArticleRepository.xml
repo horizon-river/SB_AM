@@ -85,11 +85,11 @@
 		WHERE id = #{id}
 	</update>
 	
-	<select id="getLastInsertId" resultType="Int">
+	<select id="getLastInsertId" resultType="int">
 		SELECT LAST_INSERT_ID()
 	</select>
 	
-	<select id="getArticlesCount" resultType="Int">
+	<select id="getArticlesCount" resultType="int">
 		SELECT COUNT(*)
 		FROM article AS A
 		WHERE 1
@@ -120,10 +120,18 @@
 		WHERE id = #{id}
 	</update>
 	
-	<select id="getArticleHitCount" resultType="Int">
+	<select id="getArticleHitCount" resultType="int">
 		SELECT hitCount
 		FROM article
 		WHERE id=#{id}
+	</select>
+	
+	<select id="getSumReactionPointByMemberId" resultType="int">
+		SELECT IFNULL(SUM(RP.point),0) AS s
+		FROM reactionPoint AS RP
+		WHERE RP.relTypeCode = 'article'
+		AND RP.relId = #{id}
+		AND RP.memberId = #{memberId}
 	</select>
 	
 </mapper>
