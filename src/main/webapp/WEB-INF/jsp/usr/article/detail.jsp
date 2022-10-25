@@ -31,6 +31,12 @@
 						<td>${article.writer }</td>
 					</tr>
 					<tr>
+						<th>추천</th>
+						<td>
+							<span class="badge">${article.extra__sumReactionPoint }</span>
+						</td>
+					</tr>
+					<tr>
 						<th>제목</th>
 						<td>${article.title }</td>
 					</tr>
