@@ -49,7 +49,7 @@
 								<td><a class="hover:underline" href="../article/detail?id=${article.id }">${article.title }</a></td>
 								<td>${article.writer }</td>
 								<td>${article.hitCount }</td>
-								<td>${article.extra__sumReactionPoint }</td>
+								<td>${article.goodReactionPoint }</td>
 							</tr>
 						</c:forEach>
 					</tbody>

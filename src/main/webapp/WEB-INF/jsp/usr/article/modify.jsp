@@ -33,7 +33,7 @@
 						<tr>
 							<th>추천</th>
 							<td>
-								<span class="badge">${article.extra__sumReactionPoint }</span>
+								<span class="badge">${article.goodReactionPoint }</span>
 							</td>
 						</tr>
 						<tr>
