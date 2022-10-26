@@ -36,9 +36,9 @@
 							<span class="badge">${article.goodReactionPoint }</span>
 							<c:if test="${actorCanMakeReaction }">
 								<span>&nbsp;</span>
-								<button class="btn btn-outline btn-xs">좋아요 👍</button>
+								<a href="/usr/reactionPoint/doGoodReaction?relTypeCode=article&relId=${param.id }" class="btn btn-outline btn-xs">좋아요 👍</a>
 								<span>&nbsp;</span>
-								<button class="btn btn-outline btn-xs">싫어요 👎</button>
+								<a href="/usr/reactionPoint/doBadReaction?relTypeCode=article&relId=${param.id }" class="btn btn-outline btn-xs">싫어요 👎</a>
 							</c:if>
 						</td>
 					<tr>
@@ -87,6 +87,8 @@
 			$('.article-detail__hit-count').empty().html(data.data1);
 		}, 'json');
 	}
+	
+	
 	
 	ArticleDetail__increaseHitCount();
 	
