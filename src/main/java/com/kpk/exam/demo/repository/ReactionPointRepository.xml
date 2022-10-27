@@ -13,4 +13,24 @@
 		AND RP.memberId = #{actorId}
 	</select>
 	
+	<insert id="addGoodReactionPoint">
+		INSERT INTO reactionPoint
+		SET regDate = NOW(),
+		updateDate = NOW(),
+		relTypeCode = #{relTypeCode},
+		relId = #{relId},
+		memberId = #{actorId},
+		`point` = 1
+	</insert>
+	
+	<insert id="addBadReactionPoint">
+		INSERT INTO reactionPoint
+		SET regDate = NOW(),
+		updateDate = NOW(),
+		relTypeCode = #{relTypeCode},
+		relId = #{relId},
+		memberId = #{actorId},
+		`point` = -1
+	</insert>
+	
 </mapper>
