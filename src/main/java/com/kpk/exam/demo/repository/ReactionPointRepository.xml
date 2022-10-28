@@ -33,4 +33,18 @@
 		`point` = -1
 	</insert>
 	
+	<delete id="deleteGoodReactionPoint">
+		DELETE FROM reactionPoint
+		WHERE relTypeCode = #{relTypeCode} 
+		AND relId = #{relId}
+		AND memberId = #{actorId}
+	</delete>
+	
+	<delete id="deleteBadReactionPoint">
+		DELETE FROM reactionPoint
+		WHERE relTypeCode = #{relTypeCode} 
+		AND relId = #{relId}
+		AND memberId = #{actorId}
+	</delete>
+	
 </mapper>
