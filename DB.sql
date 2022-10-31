@@ -191,6 +191,65 @@ ALTER TABLE article ADD COLUMN goodReactionPoint INT(10) UNSIGNED NOT NULL DEFAU
 # 게시물 테이블에 badReactionPoint 칼럼 추가
 ALTER TABLE article ADD COLUMN badReactionPoint INT(10) UNSIGNED NOT NULL DEFAULT 0;
 
+# 기존 게시물의 goodReactionPoint, badReactionPoint 필드 값 채워주기
+UPDATE article AS A
+INNER JOIN (
+    SELECT RP.relTypeCode, RP.relId,
+    SUM(IF(RP.point > 0, RP.point, 0)) AS goodReactionPoint,
+    SUM(IF(RP.point < 0, RP.point * -1, 0)) AS badReactionPoint
+    FROM reactionPoint AS RP
+    GROUP BY RP.relTypeCode, RP.relId
+) AS RP_SUM
+ON A.id = RP_SUM.relId
+SET A.goodReactionPoint = RP_SUM.goodReactionPoint,
+A.badReactionPoint = RP_SUM.badReactionPoint
+
+# 댓글 테이블
+CREATE TABLE reply (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    memberId INT(10) UNSIGNED NOT NULL,
+    relTypeCode CHAR(30) NOT NULL COMMENT '관련데이터타입코드',
+    relId INT(10) UNSIGNED NOT NULL COMMENT '관련데이터번호',
+    `body` TEXT NOT NULL
+);
+
+# reply 테스트 데이터
+INSERT INTO reply
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 1,
+relTypeCode = 'article',
+relId = 1,
+`body` = '댓글1';
+
+INSERT INTO reply
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 1,
+relTypeCode = 'article',
+relId = 1,
+`body` = '댓글2';
+
+INSERT INTO reply
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+relTypeCode = 'article',
+relId = 1,
+`body` = '댓글3';
+
+INSERT INTO reply
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 3,
+relTypeCode = 'article',
+relId = 2,
+`body` = '댓글4';
+
+#####################################################
+
 SELECT * FROM reactionPoint;
 
 SELECT * FROM article ORDER BY id DESC;
@@ -198,6 +257,8 @@ SELECT * FROM article ORDER BY id DESC;
 SELECT * FROM `member`;
 
 SELECT * FROM board;
+
+SELECT * FROM reply;
 
 SELECT LAST_INSERT_ID();
 
@@ -258,15 +319,3 @@ from reactionPoint as RP
 group by RP.relTypeCode, RP.relId
 */
 
-# 기존 게시물의 goodReactionPoint, badReactionPoint 필드 값 채워주기
-UPDATE article AS A
-INNER JOIN (
-    SELECT RP.relTypeCode, RP.relId,
-    SUM(IF(RP.point > 0, RP.point, 0)) AS goodReactionPoint,
-    SUM(IF(RP.point < 0, RP.point * -1, 0)) AS badReactionPoint
-    FROM reactionPoint AS RP
-    GROUP BY RP.relTypeCode, RP.relId
-) AS RP_SUM
-ON A.id = RP_SUM.relId
-SET A.goodReactionPoint = RP_SUM.goodReactionPoint,
-A.badReactionPoint = RP_SUM.badReactionPoint
