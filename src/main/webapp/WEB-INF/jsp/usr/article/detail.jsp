@@ -88,7 +88,7 @@
 	<div class="container mx-auto px-3">
 		<h2>댓글 작성</h2>
 		<c:if test="${rq.logined }">
-			<form class="table-box-type-1" method="post" action="../reply/doWrite">
+			<form class="table-box-type-1" method="post" action="../reply/doWrite" onsubmit="ReplyWrite__submitForm(this); return false;">
 				<input type="hidden" name="relTypeCode" value="article" />
 				<input type="hidden" name="relId" value="${article.id }" />
 				<table class="table table-zebra w-full">
@@ -100,7 +100,7 @@
 						<tr>
 							<th>내용</th>
 							<td>
-								<textarea required="required" class="w-full textarea textarea-bordered" name="body" placeholder="댓글을 입력해주세요." rows="5"></textarea>
+								<textarea class="w-full textarea textarea-bordered" name="body" placeholder="댓글을 입력해주세요." rows="3"></textarea>
 							</td>
 						</tr>
 						<tr>
@@ -123,6 +123,7 @@
 </script>
 
 <script>
+	// 조회수 관련
 	function ArticleDetail__increaseHitCount(){
 		const localStorageKey = 'article__' + params.id + '__alreadyView';
 		
@@ -139,12 +140,37 @@
 		}, 'json');
 	}
 	
-	
-	
 	ArticleDetail__increaseHitCount();
 	
 	$(function(){
 		setTimeout(ArticleDetail__increaseHitCount(), 2000);
 	});
+</script>
+
+<script type="text/javascript">
+	// 댓글 관련
+	let ReplyWrite__submitFormDone = false;
+	function ReplyWrite__submitForm(form) {
+		if(ReplyWrite__submitFormDone){
+			return;
+		}
+		
+		form.body.value = form.body.value.trim();
+		
+		if(form.body.value.length == 0){
+			alert('댓글을 입력해주세요.');
+			form.body.focus();
+			return;
+		}
+		
+		if(form.body.value.length < 2){
+			alert('2글자 이상 입력해주세요.');
+			form.body.focus();
+			return;
+		}
+		
+		ReplyWrite__submitFormDone = true;
+		form.submit();
+	}
 </script>
 <%@ include file="../common/foot.jspf" %>
