@@ -84,6 +84,39 @@
 	</div>
 </section>
 
+<section class="mt-5">
+	<div class="container mx-auto px-3">
+		<h2>댓글 작성</h2>
+		<c:if test="${rq.logined }">
+			<form class="table-box-type-1" method="post" action="../reply/doWrite">
+				<input type="hidden" name="relTypeCode" value="article" />
+				<input type="hidden" name="relId" value="${article.id }" />
+				<table class="table table-zebra w-full">
+					<tbody>
+						<tr>
+							<th>작성자</th>
+							<td>${rq.loginedMember.nickname }</td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td>
+								<textarea required="required" class="w-full textarea textarea-bordered" name="body" placeholder="댓글을 입력해주세요." rows="5"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td><button class="btn btn-success" type="submit">댓글작성</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</c:if>
+		<c:if test="${rq.notLogined }">
+			<a class="btn btn-primary" href="/usr/member/login">로그인</a> 후 이용해주세요.
+		</c:if>
+	</div>
+</section>
+
 <script>
 	const params = {};
 	params.id = parseInt('${param.id}');

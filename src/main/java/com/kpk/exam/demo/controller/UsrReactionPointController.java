@@ -59,7 +59,7 @@ public class UsrReactionPointController {
 		
 		reactionPointService.deleteGoodReactionPoint(rq.getLoginedMemberId() ,relTypeCode, relId);
 		
-		return rq.jsReplace("좋아요 취소!", replaceUri); 
+		return rq.jsReplace("좋아요 취소 처리 되었습니다.", replaceUri); 
 	}
 	
 	@RequestMapping("/usr/reactionPoint/doCancelBadReaction")
@@ -73,6 +73,6 @@ public class UsrReactionPointController {
 		
 		reactionPointService.deleteBadReactionPoint(rq.getLoginedMemberId() ,relTypeCode, relId);
 		
-		return rq.jsReplace("싫어요 취소!", replaceUri); 
+		return rq.jsReplace("싫어요 취소 처리 되었습니다.", replaceUri); 
 	}
 }
