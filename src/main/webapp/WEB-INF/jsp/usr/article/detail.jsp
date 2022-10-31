@@ -89,6 +89,7 @@
 		<h2>댓글 작성</h2>
 		<c:if test="${rq.logined }">
 			<form class="table-box-type-1" method="post" action="../reply/doWrite" onsubmit="ReplyWrite__submitForm(this); return false;">
+				<input type="hidden" name="memberId" value="${rq.loginedMemberId }" />
 				<input type="hidden" name="relTypeCode" value="article" />
 				<input type="hidden" name="relId" value="${article.id }" />
 				<table class="table table-zebra w-full">
