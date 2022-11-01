@@ -237,7 +237,7 @@ SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 2,
 relTypeCode = 'article',
-relId = 1,
+relId = 2,
 `body` = '댓글3';
 
 INSERT INTO reply
@@ -245,7 +245,7 @@ SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 3,
 relTypeCode = 'article',
-relId = 2,
+relId = 3,
 `body` = '댓글4';
 
 # 댓글 테이블에 goodReactionPoint 칼럼 추가

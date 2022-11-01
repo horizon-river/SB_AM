@@ -120,13 +120,32 @@
 
 <section class="mt-5">
 	<div class="container mx-auto px-3">
-		<h2>댓글 리스트 (${repliesCount })</h2>
+		<h2>댓글 리스트 (${replies.size() })</h2>
 		<table class="table table-zebra w-full">
+			<colgroup>
+				<col width="50" />
+				<col width="80" />
+				<col width="200" />
+				<col width="100" />
+				<col width="50" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>작성자</th>
+					<th>내용</th>
+					<th>날짜</th>
+					<th>추천</th>
+				</tr>
+			</thead>
 			<tbody>
 				<c:forEach var="reply" items="${replies }">
-					<tr>
-						<th>${reply.writer }</th>
-						<td>${reply.body }</td>
+					<tr class="hover">
+						<td>${reply.id }</td>
+						<td>${reply.writer }</td>
+						<td>${reply.getForPrintBody() }</td>
+						<td>${reply.regDate }</td>
+						<td>${reply.goodReactionPoint }</td>
 					</tr>					
 				</c:forEach>
 			</tbody>

@@ -162,15 +162,12 @@ public class UsrArticleController {
 		
 		List<Reply> replies = replyService.getForPrintReplies("article", id);
 		
-		int repliesCount = replies.size();
-		
 		model.addAttribute("replies", replies);
 		
 		ResultData actorCanMakeReactionRd = reactionPointService.actorCanMakeReaction(rq.getLoginedMemberId(), "article", id);
 		
 		model.addAttribute("actorCanMakeReactionRd", actorCanMakeReactionRd);
 		model.addAttribute("actorCanMakeReaction", actorCanMakeReactionRd.isSuccess());
-		model.addAttribute("repliesCount", repliesCount);
 		
 		if(actorCanMakeReactionRd.getResultCode().equals("F-2")) {
 			int sumReactionPointByMemberId = (int) actorCanMakeReactionRd.getData1();

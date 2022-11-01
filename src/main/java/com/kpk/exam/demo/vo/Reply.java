@@ -15,12 +15,18 @@ public class Reply {
 	private String relTypeCode;
 	private int relId;
 	private String body;
-	private String writer;
+	private int goodReactionPoint;
+	private int badReactionPoint;
 	
+	private String writer;
 	private boolean extra__actorCanDelete;
 	private boolean extra__actorCanModify;
 	
 	public String getForPrintType1RegDate() {
 		return regDate.substring(2,16).replace(" ", "<br />");
+	}
+	
+	public String getForPrintBody() {
+		return body.replaceAll("\n", "<br>");
 	}
 }
