@@ -248,6 +248,15 @@ relTypeCode = 'article',
 relId = 2,
 `body` = '댓글4';
 
+# 댓글 테이블에 goodReactionPoint 칼럼 추가
+ALTER TABLE reply ADD COLUMN goodReactionPoint INT(10) UNSIGNED NOT NULL DEFAULT 0;
+
+# 댓글 테이블에 badReactionPoint 칼럼 추가
+ALTER TABLE reply ADD COLUMN badReactionPoint INT(10) UNSIGNED NOT NULL DEFAULT 0;`reply`
+
+# 댓글 테이블에 인덱스 걸기
+ALTER TABLE `SB_AM`.`reply` ADD INDEX (`relTypeCode` , `relId`);
+
 #####################################################
 
 SELECT * FROM reactionPoint;
@@ -261,6 +270,14 @@ SELECT * FROM board;
 SELECT * FROM reply;
 
 SELECT LAST_INSERT_ID();
+
+EXPLAIN SELECT R.*, M.nickname AS writer
+FROM reply AS R
+LEFT JOIN `member` AS M
+ON R.memberId = M.id
+WHERE relTypeCode = 'article'
+AND relId = 2
+ORDER BY R.id DESC
 
 /*
 # 게시물 늘리기
