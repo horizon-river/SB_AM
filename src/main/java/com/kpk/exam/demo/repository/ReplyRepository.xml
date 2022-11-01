@@ -15,6 +15,16 @@
 		`body` = #{body}
 	</insert>
 	
+	<select id="getForPrintReplies" resultType="Reply">
+		SELECT R.*, M.nickname AS writer
+		FROM reply AS R
+		LEFT JOIN `member` AS M
+		ON R.memberId = M.id
+		WHERE relTypeCode = #{relTypeCode}
+		AND relId = #{relId}
+		ORDER BY R.id DESC
+	</select>
+	
 	<select id="getLastInsertId" resultType="int">
 		SELECT LAST_INSERT_ID()
 	</select>

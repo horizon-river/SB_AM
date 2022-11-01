@@ -21,10 +21,20 @@ public class UsrReplyController {
 	@RequestMapping("/usr/reply/doWrite")
 	@ResponseBody
 	public String doWrite(int memberId, String relTypeCode, int relId, String replaceUri, String body) {
-				
-		ResultData writeReplyRd = replyService.writeReply(memberId, relTypeCode, relId, body);
 		
-		int id = (int) writeReplyRd.getData1();
+		if (Ut.empty(relTypeCode)) {
+			return rq.jsHistoryBack("relTypeCode을(를) 입력해주세요");
+		}
+
+		if (Ut.empty(relId)) {
+			return rq.jsHistoryBack("relId을(를) 입력해주세요");
+		}
+
+		if (Ut.empty(body)) {
+			return rq.jsHistoryBack("body을(를) 입력해주세요");
+		}
+		
+		ResultData writeReplyRd = replyService.writeReply(memberId, relTypeCode, relId, body);
 		
 		if (Ut.empty(replaceUri)) {
 			switch (relTypeCode) {

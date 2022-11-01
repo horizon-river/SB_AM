@@ -118,6 +118,22 @@
 	</div>
 </section>
 
+<section class="mt-5">
+	<div class="container mx-auto px-3">
+		<h2>댓글 리스트 (${repliesCount })</h2>
+		<table class="table table-zebra w-full">
+			<tbody>
+				<c:forEach var="reply" items="${replies }">
+					<tr>
+						<th>${reply.writer }</th>
+						<td>${reply.body }</td>
+					</tr>					
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+</section>
+
 <script>
 	const params = {};
 	params.id = parseInt('${param.id}');

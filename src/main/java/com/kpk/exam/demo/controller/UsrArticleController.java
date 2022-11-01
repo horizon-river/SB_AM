@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kpk.exam.demo.service.ArticleService;
 import com.kpk.exam.demo.service.BoardService;
 import com.kpk.exam.demo.service.ReactionPointService;
+import com.kpk.exam.demo.service.ReplyService;
 import com.kpk.exam.demo.util.Ut;
 import com.kpk.exam.demo.vo.Article;
 import com.kpk.exam.demo.vo.Board;
+import com.kpk.exam.demo.vo.Reply;
 import com.kpk.exam.demo.vo.ResultData;
 import com.kpk.exam.demo.vo.Rq;
 
@@ -27,6 +29,8 @@ public class UsrArticleController {
 	private BoardService boardService;
 	@Autowired
 	private ReactionPointService reactionPointService;
+	@Autowired
+	private ReplyService replyService;
 	@Autowired
 	private Rq rq;
 	
@@ -153,13 +157,20 @@ public class UsrArticleController {
 	@RequestMapping("usr/article/detail")
 	public String getArticle(Model model, int id) {
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
-
+		
 		model.addAttribute("article", article);
+		
+		List<Reply> replies = replyService.getForPrintReplies("article", id);
+		
+		int repliesCount = replies.size();
+		
+		model.addAttribute("replies", replies);
 		
 		ResultData actorCanMakeReactionRd = reactionPointService.actorCanMakeReaction(rq.getLoginedMemberId(), "article", id);
 		
 		model.addAttribute("actorCanMakeReactionRd", actorCanMakeReactionRd);
 		model.addAttribute("actorCanMakeReaction", actorCanMakeReactionRd.isSuccess());
+		model.addAttribute("repliesCount", repliesCount);
 		
 		if(actorCanMakeReactionRd.getResultCode().equals("F-2")) {
 			int sumReactionPointByMemberId = (int) actorCanMakeReactionRd.getData1();
