@@ -271,14 +271,6 @@ SELECT * FROM reply;
 
 SELECT LAST_INSERT_ID();
 
-EXPLAIN SELECT R.*, M.nickname AS writer
-FROM reply AS R
-LEFT JOIN `member` AS M
-ON R.memberId = M.id
-WHERE relTypeCode = 'article'
-AND relId = 2
-ORDER BY R.id DESC
-
 /*
 # 게시물 늘리기
 insert into article

@@ -76,6 +76,10 @@ public class ArticleService {
 	}
 
 	public ResultData actorCanModify(int loginedMemberId, Article article) {
+		if (article == null) {
+			return ResultData.from("F-1", "게시물이 존재하지 않습니다");
+		}
+		
 		if (article.getMemberId() != loginedMemberId) {
 			return ResultData.from("F-2", "해당 게시물에 대한 권한이 없습니다.");
 		}

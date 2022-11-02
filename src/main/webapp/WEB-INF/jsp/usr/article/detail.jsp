@@ -128,6 +128,7 @@
 				<col width="200" />
 				<col width="100" />
 				<col width="50" />
+				<col width="100" />
 			</colgroup>
 			<thead>
 				<tr>
@@ -136,16 +137,25 @@
 					<th>내용</th>
 					<th>날짜</th>
 					<th>추천</th>
+					<th>비고</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="reply" items="${replies }">
+				<c:forEach var="reply" items="${replies }" varStatus="status">
 					<tr class="hover">
-						<td>${reply.id }</td>
+						<td>${status.count }</td>
 						<td>${reply.writer }</td>
 						<td>${reply.getForPrintBody() }</td>
-						<td>${reply.regDate }</td>
+						<td>${reply.forPrintType1RegDate }</td>
 						<td>${reply.goodReactionPoint }</td>
+						<td>
+							<c:if test="${reply.extra__actorCanModify}">
+								<a class="btn btn-ghost" href="../reply/modify?id=${reply.id }">수정</a>
+							</c:if>
+							<c:if test="${reply.extra__actorCanDelete}">
+								<a class="btn btn-ghost" onclick="if(confirm('삭제 하시겠습니까?') == false) return false;" href="../reply/doDelete?id=${reply.id }">삭제</a>
+							</c:if>
+						</td>
 					</tr>					
 				</c:forEach>
 			</tbody>

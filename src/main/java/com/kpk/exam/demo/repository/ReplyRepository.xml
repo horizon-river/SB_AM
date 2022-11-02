@@ -22,7 +22,7 @@
 		ON R.memberId = M.id
 		WHERE relTypeCode = #{relTypeCode}
 		AND relId = #{relId}
-		ORDER BY R.id DESC
+		ORDER BY R.id ASC
 	</select>
 	
 	<select id="getLastInsertId" resultType="int">
