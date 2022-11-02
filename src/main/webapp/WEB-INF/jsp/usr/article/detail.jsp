@@ -123,7 +123,6 @@
 		<h2>댓글 리스트 (${replies.size() })</h2>
 		<table class="table table-zebra w-full">
 			<colgroup>
-				<col width="50" />
 				<col width="80" />
 				<col width="200" />
 				<col width="100" />
@@ -132,7 +131,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>번호</th>
+					<!-- <th>번호</th> -->
 					<th>작성자</th>
 					<th>내용</th>
 					<th>날짜</th>
@@ -143,7 +142,7 @@
 			<tbody>
 				<c:forEach var="reply" items="${replies }" varStatus="status">
 					<tr class="hover">
-						<td>${status.count }</td>
+						<!-- <td>${status.count }</td> -->
 						<td>${reply.writer }</td>
 						<td>${reply.getForPrintBody() }</td>
 						<td>${reply.forPrintType1RegDate }</td>

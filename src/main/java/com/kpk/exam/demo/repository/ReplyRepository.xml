@@ -29,4 +29,17 @@
 		SELECT LAST_INSERT_ID()
 	</select>
 	
+	<select id="getForPrintReply" resultType="Reply">
+		SELECT R.*, M.nickname AS writer
+		FROM reply AS R
+		LEFT JOIN `member` AS M
+		ON R.memberId = M.id
+		WHERE R.id = #{id}
+	</select>
+	
+	<delete id="deleteReply">
+		DELETE FROM reply
+		WHERE id = #{id}
+	</delete>
+	
 </mapper>
