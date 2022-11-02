@@ -2,11 +2,14 @@ package com.kpk.exam.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kpk.exam.demo.service.ArticleService;
 import com.kpk.exam.demo.service.ReplyService;
 import com.kpk.exam.demo.util.Ut;
+import com.kpk.exam.demo.vo.Article;
 import com.kpk.exam.demo.vo.Reply;
 import com.kpk.exam.demo.vo.ResultData;
 import com.kpk.exam.demo.vo.Rq;
@@ -16,6 +19,8 @@ public class UsrReplyController {
 	
 	@Autowired
 	private ReplyService replyService;
+	@Autowired
+	private ArticleService articleService;
 	@Autowired
 	private Rq rq;
 	
@@ -46,6 +51,37 @@ public class UsrReplyController {
 		}
 		
 		return rq.jsReplace(writeReplyRd.getMsg(), replaceUri);
+	}
+	
+	@RequestMapping("/usr/reply/modify")
+	public String doWrite(Model model, int id) {
+
+		if (Ut.empty(id)) {
+			return rq.jsHistoryBack("id가 없습니다.");
+		}
+		
+		Reply reply = replyService.getForPrintReply(rq.getLoginedMember(), id);
+
+		if (reply == null) {
+			return rq.jsHistoryBack(Ut.f("%d번 댓글은 존재하지 않습니다.", id));
+		}
+
+		if (reply.isExtra__actorCanModify() == false) {
+			return rq.jsHistoryBack("해당 댓글을 수정할 권한이 없습니다.");
+		}
+		
+		String relDataTitle = null;
+		switch (reply.getRelTypeCode()) {
+		case "article":
+			Article article = articleService.getArticle(reply.getRelId());
+			relDataTitle = article.getTitle();
+			break;
+		}
+		
+		model.addAttribute("relDataTitle", relDataTitle);
+		model.addAttribute("reply", reply);
+		
+		return "usr/reply/modify";
 	}
 	
 	@RequestMapping("/usr/reply/doDelete")
