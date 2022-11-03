@@ -64,6 +64,13 @@
 						</a>						
 					</c:if>
 				</li>
+				<li>
+					<c:if test="${rq.isLogined()}">
+						<a class="h-full px-3 flex items-center"  href="/usr/member/myPage">
+							<span>MYPAGE</span>
+						</a>						
+					</c:if>
+				</li>
 			</ul>
 		</div>
 	</header>
