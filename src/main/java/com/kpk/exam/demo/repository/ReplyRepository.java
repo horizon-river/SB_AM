@@ -18,4 +18,6 @@ public interface ReplyRepository {
 	public Reply getForPrintReply(int id);
 
 	public void deleteReply(int id);
+
+	public void modifyReply(int id, String body);
 }

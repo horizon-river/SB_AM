@@ -42,4 +42,11 @@
 		WHERE id = #{id}
 	</delete>
 	
+	<update id="modifyReply">
+		UPDATE reply
+		SET updateDate = NOW(),
+		`body` = #{body}
+		WHERE id = #{id}
+	</update>
+	
 </mapper>
