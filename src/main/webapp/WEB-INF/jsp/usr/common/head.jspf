@@ -52,6 +52,13 @@
 						<span>WRITE</span>
 					</a>
 				</li>
+				<li>
+					<c:if test="${rq.isLogined()}">
+						<a class="h-full px-3 flex items-center"  href="/usr/member/myPage">
+							<span>MYPAGE</span>
+						</a>						
+					</c:if>
+				</li>
 				<li class="hover:underline">
 					<c:if test="${!rq.isLogined()}">
 						<a class="h-full px-3 flex items-center"  href="/usr/member/login">
@@ -61,13 +68,6 @@
 					<c:if test="${rq.isLogined()}">
 						<a class="h-full px-3 flex items-center"  href="/usr/member/doLogout">
 							<span>LOGOUT</span>
-						</a>						
-					</c:if>
-				</li>
-				<li>
-					<c:if test="${rq.isLogined()}">
-						<a class="h-full px-3 flex items-center"  href="/usr/member/myPage">
-							<span>MYPAGE</span>
 						</a>						
 					</c:if>
 				</li>

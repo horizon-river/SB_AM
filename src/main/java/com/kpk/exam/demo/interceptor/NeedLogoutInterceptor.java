@@ -10,7 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import com.kpk.exam.demo.vo.Rq;
 
 @Component
-public class NeedLoginInterceptor implements HandlerInterceptor{
+public class NeedLogoutInterceptor implements HandlerInterceptor{
 	
 	@Autowired
 	private Rq rq;
@@ -18,8 +18,8 @@ public class NeedLoginInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
 		
-		if (rq.isLogined()) {
-			rq.printHistoryBackJs("로그아웃 후 이용해주세요.");
+		if (!rq.isLogined()) {
+			rq.printHistoryBackJs("로그인 후 이용해주세요.");
 			return false;
 		}
 		
