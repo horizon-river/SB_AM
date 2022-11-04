@@ -13,6 +13,8 @@ public class MemberService {
 	
 	@Autowired
 	private MemberRepository memberRepository;
+	@Autowired
+	private AttrService attrService;
 
 	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname, String cellphoneNum, String email) {
 		// 로그인아이디 중복체크
@@ -51,6 +53,14 @@ public class MemberService {
 		memberRepository.modify(id, loginPw, name, nickname, cellphoneNum, email);
 		
 		return ResultData.from("S-1", "회원정보가 수정되었습니다.");
+	}
+
+	public String genMemberModifyAuthKey(int actorId) {
+		String memberModifyAuthKey = Ut.getTempPassword(10);
+		
+		attrService.setValue("member", actorId, "extra", "memberModifyAuthKey", memberModifyAuthKey, Ut.getDateStrLater(60 * 5));
+		
+		return memberModifyAuthKey;
 	}
 	
 }
