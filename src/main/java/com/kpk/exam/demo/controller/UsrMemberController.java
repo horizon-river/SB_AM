@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kpk.exam.demo.service.MemberService;
 import com.kpk.exam.demo.util.Ut;
+import com.kpk.exam.demo.vo.Article;
 import com.kpk.exam.demo.vo.Member;
 import com.kpk.exam.demo.vo.ResultData;
 import com.kpk.exam.demo.vo.Rq;
@@ -96,10 +97,6 @@ public class UsrMemberController {
 	@ResponseBody
 	public String doLogout() {
 		
-		if (!rq.isLogined()) {
-			return Ut.jsHistoryBack("로그아웃 상태입니다.");
-		}
-		
 		rq.logout();
 		
 		return Ut.jsReplace("로그아웃 되었습니다.", "/");
@@ -126,6 +123,40 @@ public class UsrMemberController {
 			return rq.jsHistoryBack("비밀번호가 일치하지 않습니다.");
 		}
 		
-		return "usr/member/checkPassword";
+		return Ut.jsReplace("", replaceUri);
+	}
+	
+	@RequestMapping("usr/member/modify")
+	public String showModify() {
+		return "usr/member/modify";
+	}
+	
+	@RequestMapping("usr/member/doModify")
+	@ResponseBody
+	public String doModify(String loginPw, String name, String nickname, String cellphoneNum, String email) {
+		if(Ut.empty(loginPw)) {
+			loginPw = null;
+		}
+		
+		if(Ut.empty(name)) {
+			return rq.jsHistoryBack("이름을 입력해주세요.");
+		}
+		
+		if(Ut.empty(nickname)) {
+			return rq.jsHistoryBack("닉네임을 입력해주세요.");
+		}
+		
+		if(Ut.empty(cellphoneNum)) {
+			return rq.jsHistoryBack("전화번호를 입력해주세요.");
+		}
+		
+		if(Ut.empty(email)) {
+			return rq.jsHistoryBack("이메일을 입력해주세요.");
+		}
+		
+		ResultData modifyRd = memberService.modify(rq.getLoginedMemberId(), loginPw, name, nickname, cellphoneNum, email);
+		
+		return rq.jsReplace(modifyRd.getMsg(), "/");
+		
 	}
 }
