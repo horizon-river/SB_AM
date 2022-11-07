@@ -133,13 +133,33 @@ public class UsrMemberController {
 	}
 	
 	@RequestMapping("usr/member/modify")
-	public String showModify() {
+	public String showModify(String memberModifyAuthKey) {
+		if(Ut.empty(memberModifyAuthKey)) {
+			return rq.jsHistoryBackOnView("회원 수정 인증코드가 필요합니다.");
+		}
+		
+		ResultData checkMemeberModifyAuthKeyRd = memberService.checkMemeberModifyAuthKey(rq.getLoginedMemberId(), memberModifyAuthKey);
+		
+		if(checkMemeberModifyAuthKeyRd.isFail()) {
+			return rq.jsHistoryBackOnView(checkMemeberModifyAuthKeyRd.getMsg());
+		}
+		
 		return "usr/member/modify";
 	}
 	
 	@RequestMapping("usr/member/doModify")
 	@ResponseBody
-	public String doModify(String loginPw, String name, String nickname, String cellphoneNum, String email) {
+	public String doModify(String memberModifyAuthKey, String loginPw, String name, String nickname, String cellphoneNum, String email) {
+		if(Ut.empty(memberModifyAuthKey)) {
+			return rq.jsHistoryBackOnView("회원 수정 인증코드가 필요합니다.");
+		}
+		
+		ResultData checkMemeberModifyAuthKeyRd = memberService.checkMemeberModifyAuthKey(rq.getLoginedMemberId(), memberModifyAuthKey);
+		
+		if(checkMemeberModifyAuthKeyRd.isFail()) {
+			return rq.jsHistoryBackOnView(checkMemeberModifyAuthKeyRd.getMsg());
+		}
+		
 		if(Ut.empty(loginPw)) {
 			loginPw = null;
 		}
