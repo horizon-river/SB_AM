@@ -87,10 +87,6 @@
 }
 /* 토스트 UI */
 
-/* 다크모드로 인한 텍스트 가시성 수정 */
-.toastui-editor-contents p {
-	color:gray;
-}
 </style>
 
 
