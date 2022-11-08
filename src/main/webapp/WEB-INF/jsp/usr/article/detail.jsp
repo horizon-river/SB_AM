@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="ARTICLE DETAIL"/>
 <%@ include file="../common/head.jspf" %>
+<%@ include file="../common/toastUiEditorLib.jspf" %>
 
 <section class="mt-8">
 	<div class="container mx-auto px-3 text-xl">
@@ -65,7 +66,11 @@
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td>${article.body }</td>
+						<td>
+							<div class="toast-ui-viewer">
+								<script type="text/x-template">${article.getForPrintBody() }</script>
+							</div>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -202,20 +207,21 @@
 		
 		form.body.value = form.body.value.trim();
 		
-		if(form.body.value.length == 0){
-			alert('댓글을 입력해주세요.');
-			form.body.focus();
+		const editor = $(form).find('.toast-ui-editor').data('data-toast-editor');
+		const markdown = editor.getMarkdown().trim();
+				
+		if(markdown.length == 0){
+			alert('내용을 입력해주세요.');
+			editor.focus();
+			
 			return;
 		}
 		
-		if(form.body.value.length < 2){
-			alert('2글자 이상 입력해주세요.');
-			form.body.focus();
-			return;
-		}
+		form.body.value = markdown;
+		
+		form.submit();
 		
 		ReplyWrite__submitFormDone = true;
-		form.submit();
 	}
 </script>
 <%@ include file="../common/foot.jspf" %>
