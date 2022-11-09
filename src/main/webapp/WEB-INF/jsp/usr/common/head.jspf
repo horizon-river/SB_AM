@@ -62,7 +62,7 @@
 				</li>
 				<li class="hover:underline">
 					<c:if test="${!rq.isLogined()}">
-						<a class="h-full px-3 flex items-center"  href="/usr/member/login">
+						<a class="h-full px-3 flex items-center"  href="${rq.loginUri}">
 							<span>LOGIN</span>
 						</a>						
 					</c:if>

@@ -118,7 +118,7 @@
 			</form>
 		</c:if>
 		<c:if test="${rq.notLogined }">
-			<a class="btn btn-primary" href="/usr/member/login">로그인</a> 후 이용해주세요.
+			<a class="btn btn-primary" href="${rq.loginUri }">로그인</a> 후 이용해주세요.
 		</c:if>
 	</div>
 </section>
