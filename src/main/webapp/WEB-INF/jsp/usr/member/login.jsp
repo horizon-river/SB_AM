@@ -6,6 +6,7 @@
 	<section class="mt-8">
 		<div class="container mx-auto px-3 text-xl">
 			<form class="table-box-type-1" method="post" action="../member/doLogin">
+			<input type="hidden" name="afterLoginUri" value="${param.afterLoginUri }" />
 				<table>
 					<tbody>
 						<tr>
