@@ -59,6 +59,11 @@
 							<span>MYPAGE</span>
 						</a>						
 					</c:if>
+					<c:if test="${!rq.isLogined()}">
+						<a class="h-full px-3 flex items-center"  href="/usr/member/join">
+							<span>JOIN</span>
+						</a>						
+					</c:if>
 				</li>
 				<li class="hover:underline">
 					<c:if test="${!rq.isLogined()}">
