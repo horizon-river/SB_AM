@@ -77,7 +77,12 @@
 		</div>
 		
 		<div class="btns mt-3">
-			<button class="btn btn-warning" type="button" onclick="history.back();">뒤로가기</button>
+			<c:if test="${empty param.listUri}">
+				<button class="btn btn-warning" type="button" onclick="history.back();">뒤로가기</button>			
+			</c:if>
+			<c:if test="${not empty param.listUri}">
+				<a class="btn btn-warning" href="${param.listUri }">뒤로가기</a>			
+			</c:if>
 			<c:if test="${article.extra__actorCanModify }">
 				<a class="btn btn-accent"  href="../article/modify?id=${article.id }">수정</a>
 			</c:if>
