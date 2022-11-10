@@ -26,7 +26,7 @@ public class UsrReplyController {
 	
 	@RequestMapping("/usr/reply/doWrite")
 	@ResponseBody
-	public String doWrite(int memberId, String relTypeCode, int relId, String replaceUri, String body) {
+	public String doWrite(String relTypeCode, int relId, String replaceUri, String body) {
 		
 		if (Ut.empty(relTypeCode)) {
 			return rq.jsHistoryBack("relTypeCode을(를) 입력해주세요");
@@ -40,7 +40,7 @@ public class UsrReplyController {
 			return rq.jsHistoryBack("body을(를) 입력해주세요");
 		}
 		
-		ResultData writeReplyRd = replyService.writeReply(memberId, relTypeCode, relId, body);
+		ResultData writeReplyRd = replyService.writeReply(rq.getLoginedMemberId(), relTypeCode, relId, body);
 		
 		if (Ut.empty(replaceUri)) {
 			switch (relTypeCode) {

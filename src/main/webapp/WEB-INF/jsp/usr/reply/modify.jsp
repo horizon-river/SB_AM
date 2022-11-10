@@ -6,6 +6,8 @@
 	<section class="mt-8">
 		<div class="container mx-auto px-3 text-xl">
 			<form class="table-box-type-1" method="post" action="../reply/doModify" onsubmit="ReplyModify__submit(this); return false;">
+			<input name="id" type="hidden" value="${reply.id }"/>
+			<input type="hidden" name="replaceUri" value="${param.replaceUri }"/>
 				<table class="table table-zebra w-full">
 					<tbody>
 						<tr>
@@ -22,7 +24,7 @@
 						</tr>
 						<tr>
 							<th>번호</th>
-							<td><input name="id" type="hidden" value="${reply.id }"/><div class="badge badge-lg">${reply.id }</div></td>
+							<td><div class="badge badge-lg">${reply.id }</div></td>
 						</tr>
 						<tr>
 							<th>작성날짜</th>
@@ -58,7 +60,7 @@
 			</form>
 			
 			<div class="btns mt-3">
-				<button class="btn btn-warning" type="button" onclick="history.back();">뒤로가기</button>
+				<a class="btn btn-warning" href="${param.replaceUri }">뒤로가기</a>
 			</div>
 		</div>
 	</section>

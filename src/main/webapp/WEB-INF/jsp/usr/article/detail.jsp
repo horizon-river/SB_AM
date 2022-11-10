@@ -99,9 +99,9 @@
 		<h2>댓글 작성</h2>
 		<c:if test="${rq.logined }">
 			<form class="table-box-type-1" method="post" action="../reply/doWrite" onsubmit="ReplyWrite__submitForm(this); return false;">
-				<input type="hidden" name="memberId" value="${rq.loginedMemberId }" />
 				<input type="hidden" name="relTypeCode" value="article" />
 				<input type="hidden" name="relId" value="${article.id }" />
+				<input type="hidden" name="replaceUri" value="${rq.currentUri }"/>
 				<table class="table table-zebra w-full">
 					<tbody>
 						<tr>
@@ -159,10 +159,10 @@
 						<td>${reply.goodReactionPoint }</td>
 						<td>
 							<c:if test="${reply.extra__actorCanModify}">
-								<a class="btn btn-ghost" href="../reply/modify?id=${reply.id }">수정</a>
+								<a class="btn btn-ghost" href="../reply/modify?id=${reply.id }&replaceUri=${rq.encodedCurrentUri }">수정</a>
 							</c:if>
 							<c:if test="${reply.extra__actorCanDelete}">
-								<a class="btn btn-ghost" onclick="if(confirm('삭제 하시겠습니까?') == false) return false;" href="../reply/doDelete?id=${reply.id }">삭제</a>
+								<a class="btn btn-ghost" onclick="if(confirm('삭제 하시겠습니까?') == false) return false;" href="../reply/doDelete?id=${reply.id }&replaceUri=${rq.encodedCurrentUri }">삭제</a>
 							</c:if>
 						</td>
 					</tr>					
