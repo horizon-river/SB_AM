@@ -7,6 +7,7 @@
 <section class="mt-8">
 	<div class="container mx-auto px-3 text-xl">
 		<form onsubmit="submitJoinForm(this); return false;" class="table-box-type-1" method="post" action="../member/doJoin">
+		<input type="hidden" name="afterLoginUri" value="${param.afterLoginUri }" />
 			<div class="table-box-type-1">
 				<table class="table table-zebra w-full">
 					<tbody>
@@ -40,7 +41,7 @@
 						</tr>
 						<tr>
 							<th></th>
-							<td><button class="btn">회원가입</button></td>
+							<td><button type="submit" class="btn">회원가입</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -66,7 +67,7 @@
 		
 		form.loginId.value = form.loginId.value.trim();
 		
-		if(form.title.value == 0){
+		if(form.loginId.value == 0){
 			alert('아이디를 입력해주세요.');
 			form.loginId.focus();
 			return;
@@ -86,7 +87,6 @@
 			if(form.loginPwConfirm.value.length == 0){
 				alert('비밀번호 확인을 입력해주세요.');
 				form.loginPwConfirm.focus();
-				
 				return;
 			}
 		}
@@ -94,7 +94,6 @@
 		if(form.loginPw.value != form.loginPwConfirm.value){
 			alert('비밀번호가 일치하지 않습니다.');
 			form.loginPw.focus();
-			
 			return;
 		}
 		
@@ -103,7 +102,6 @@
 		if(form.name.value.length == 0){
 			alert('이름을 입력해주세요.');
 			form.name.focus();
-			
 			return;
 		}
 		
@@ -112,7 +110,6 @@
 		if(form.nickname.value.length == 0){
 			alert('닉네임을 입력해주세요.');
 			form.nickname.focus();
-			
 			return;
 		}
 		
@@ -121,7 +118,6 @@
 		if(form.cellphoneNum.value.length == 0){
 			alert('전화번호를 입력해주세요.');
 			form.cellphoneNum.focus();
-			
 			return;
 		}
 		
@@ -130,7 +126,6 @@
 		if(form.email.value.length == 0){
 			alert('이메일을 입력해주세요.');
 			form.email.focus();
-			
 			return;
 		}
 		

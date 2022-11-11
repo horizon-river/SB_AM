@@ -93,6 +93,11 @@ public class Rq {
 	public String jsHistoryBack(String msg) {
 		return Ut.jsHistoryBack(msg);
 	}
+	
+	public String jsHistoryBack(String resultCode, String msg) {
+		msg = String.format("[%s] %s", resultCode, msg);
+		return Ut.jsHistoryBack(msg);
+	}
 
 	public String jsReplace(String msg, String uri) {
 		return Ut.jsReplace(msg, uri);
@@ -116,6 +121,10 @@ public class Rq {
 	public void printReplaceJs(String msg, String url) {
 		resp.setContentType("text/html; charset=UTF-8");
 		print(Ut.jsReplace(msg, url));
+	}
+	
+	public String getJoinUri() {
+		return "../member/join?afterLoginUri=" + getAfterLoginUri();
 	}
 	
 	public String getLoginUri() {

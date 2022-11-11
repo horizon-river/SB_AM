@@ -60,7 +60,7 @@
 						</a>						
 					</c:if>
 					<c:if test="${!rq.isLogined()}">
-						<a class="h-full px-3 flex items-center"  href="/usr/member/join">
+						<a class="h-full px-3 flex items-center"  href="${rq.joinUri }">
 							<span>JOIN</span>
 						</a>						
 					</c:if>
