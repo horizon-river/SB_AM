@@ -1,5 +1,8 @@
 package com.kpk.exam.demo.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -187,5 +190,22 @@ public class UsrMemberController {
 		
 		return rq.jsReplace(modifyRd.getMsg(), "/");
 		
+	}
+	
+	@RequestMapping("usr/member/getLoginIdDup")
+	@ResponseBody
+	public ResultData getLoginIdDup(String loginId) {
+		
+		if (Ut.empty(loginId)) {
+			return ResultData.from("F-1", "아이디를 입력해주세요.");
+		}
+		
+		Member oldMember = memberService.getMemberByLoginId(loginId);
+		
+		if (oldMember != null) {
+			return ResultData.from("F-2", "해당 아이디는 이미 사용중입니다.", "loginId", loginId);
+		}
+		
+		return ResultData.from("S-1", "사용 가능한 아이디입니다.", "loginId", loginId);
 	}
 }
