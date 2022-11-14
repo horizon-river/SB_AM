@@ -4,6 +4,9 @@
 <%@ include file="../common/head.jspf" %>
 <%@ page import="com.kpk.exam.demo.util.Ut" %>
 
+<!-- lodash debounce -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+
 <section class="mt-8">
 	<div class="container mx-auto px-3 text-xl">
 		<form onsubmit="submitJoinForm(this); return false;" class="table-box-type-1" method="post" action="../member/doJoin">
@@ -14,7 +17,7 @@
 						<tr>
 							<th>아이디</th>
 							<td>
-								<input onkeyup="checkLoginIdDup(this);" class="w-full input input-bordered" type="text" name="loginId" placeholder="아이디를 입력해주세요."  autocomplete="off"/>
+								<input onkeyup="debouncedCheckLoginIdDup(this);" class="w-full input input-bordered" type="text" name="loginId" placeholder="아이디를 입력해주세요."  autocomplete="off"/>
 								<div class="loginId-msg"></div>
 							</td>
 						</tr>
@@ -89,6 +92,8 @@
 			}
 		},"json");
 	}
+	
+	const debouncedCheckLoginIdDup = _.debounce(checkLoginIdDup, 300);
 
 	function submitJoinForm(form){
 		if(submitJoinFormDone){
