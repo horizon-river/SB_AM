@@ -20,7 +20,6 @@
 		Lolocation = data.body[0].longitude;
 		console.log(Lalocation);
 		console.log(Lolocation);
-		console.log(location);
 	}
 	
 	

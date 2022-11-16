@@ -77,6 +77,11 @@
 						</a>						
 					</c:if>
 				</li>
+				<li class="hover:underline">
+					<a class="h-full px-3 flex items-center"  href="../home/APITest2">
+						<span>API</span>
+					</a>
+				</li>
 			</ul>
 		</div>
 	</header>
