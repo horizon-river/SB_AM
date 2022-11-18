@@ -146,22 +146,7 @@ public class UsrMemberController {
 		
 		if(Ut.empty(loginPw)) {
 			loginPw = null;
-		}
-		
-		if(Ut.empty(name)) {
-			return rq.jsHistoryBack("이름을 입력해주세요.");
-		}
-		
-		if(Ut.empty(nickname)) {
-			return rq.jsHistoryBack("닉네임을 입력해주세요.");
-		}
-		
-		if(Ut.empty(cellphoneNum)) {
-			return rq.jsHistoryBack("전화번호를 입력해주세요.");
-		}
-		
-		if(Ut.empty(email)) {
-			return rq.jsHistoryBack("이메일을 입력해주세요.");
+			return rq.jsHistoryBack("비밀번호를 입력해주세요");
 		}
 		
 		ResultData modifyRd = memberService.modify(rq.getLoginedMemberId(), loginPw, name, nickname, cellphoneNum, email);
