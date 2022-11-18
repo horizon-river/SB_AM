@@ -9,7 +9,7 @@
 		Eum voluptatem ut at soluta inventore placeat quisquam 
 		culpa architecto vitae cumque praesentium amet. 
 		Harum ut eveniet repellendus dolores molestias. Totam numquam!
-		<span class="Popup">팝업 예시</span>
+		<!-- <span class="Popup">팝업 예시</span> -->
 	</div>
 </section>
 

@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.kpk.exam.demo.interceptor.BeforeActionInterceptor;
+import com.kpk.exam.demo.interceptor.NeedAuthLevelInterceptor;
 import com.kpk.exam.demo.interceptor.NeedLoginInterceptor;
 import com.kpk.exam.demo.interceptor.NeedLogoutInterceptor;
 
@@ -23,6 +24,10 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 	// NeedLoginInterceptor 불러오기
 	@Autowired
 	NeedLogoutInterceptor needLogoutInterceptor;
+	
+	// NeedAuthLevelInterceptor 불러오기
+	@Autowired
+	NeedAuthLevelInterceptor needAuthLevelInterceptor;	
 
 	// 인터셉터 적용
 	@Override
@@ -66,6 +71,9 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 		ir.addPathPatterns("/usr/member/doFindLoginId");
 		ir.addPathPatterns("/usr/member/findLoginPw");
 		ir.addPathPatterns("/usr/member/doFindLoginPw");
+		
+		ir = registry.addInterceptor(needAuthLevelInterceptor);
+		ir.addPathPatterns("/usr/admin/home");
 	}
 	
 }

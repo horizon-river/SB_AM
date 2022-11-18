@@ -1,5 +1,7 @@
 package com.kpk.exam.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,8 @@ public class MemberService {
 			return ResultData.from("F-8", Ut.f("이미 사용중인 이름(%s)과 이메일(%s)입니다.", name, email));
 		}
 		
+		loginPw = Ut.sha256(loginPw);
+		
 		memberRepository.join(loginId, loginPw, name, nickname, cellphoneNum, email);
 		int id = memberRepository.getLastInsertId();
 		return ResultData.from("S-1", "회원가입이 완료되었습니다.", "id", id);
@@ -49,6 +53,8 @@ public class MemberService {
 
 	public ResultData modify(int id, String loginPw, String name, String nickname, String cellphoneNum,
 			String email) {
+		
+		loginPw = Ut.sha256(loginPw);
 		
 		memberRepository.modify(id, loginPw, name, nickname, cellphoneNum, email);
 		
@@ -72,6 +78,19 @@ public class MemberService {
 		
 		return ResultData.from("S-1", "정상 코드입니다.");
 			
+	}
+
+	public int getMembersCount() {
+		return memberRepository.getMembersCount();
+	}
+
+	public List<Member> getForPrintMembers(int itemsInAPage, int page) {
+		int limitStart = (page - 1) * itemsInAPage;
+		int limitTake = itemsInAPage;
+		
+		List<Member> members = memberRepository.getForPrintMembers(limitStart, limitTake);
+		
+		return members;
 	}
 	
 }
